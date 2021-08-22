@@ -8,13 +8,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+
 @Component
 export default class New extends Vue {
-  memoBody = "メモです";
+  memoBody = "";
 
   save(): void {
-    alert('保存されました');
-    console.log("test");
+    this.$store.commit("save", {
+      body: this.memoBody
+    });
     this.$router.push("/");
   }
 
