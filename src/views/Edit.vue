@@ -1,26 +1,41 @@
 <template>
   <div class="editor">
-    <h1>Edit Memo</h1>
-    <textarea name="memo" v-model="memo.body"></textarea>
-    <button>保存</button>
+    <Header>Edit Memo</Header>
+    <textarea name="memo" v-model="memoBody"></textarea>
+    <button @click="save">保存</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import {Memo} from "@/common/interface/memo";
+import Header from '@/components/Header.vue'; 
 
-@Component
+@Component({
+  components: {
+    Header,
+  },
+})
 export default class Edit extends Vue {
-  get memo(): Memo {
+  memoBody = '';
+
+  mounted(): void {
     const id = Number(this.$route.params["id"]);
     const memos: Memo[] = this.$store.getters.allMemos;
-    const memo = memos.find(memo => memo.id === id);
+    const memo = memos.slice().find(memo => memo.id === id);
     if (memo === undefined) {
-      return memos[0];
+      this.memoBody = memos[0].body;
     } else {
-      return memo;
+      this.memoBody = memo.body;
     }
+  }
+
+  save(): void {
+    this.$store.commit("update", {
+      id: this.$route.params["id"],
+      body: this.memoBody
+    });
+    this.$router.push('/');
   }
 }
 </script>

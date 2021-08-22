@@ -11,6 +11,12 @@ var mutations = {
         var max = state.memos[state.memos.length - 1].id;
         memo.id = max + 1;
         state.memos.push(memo);
+    },
+    update: function (state, data) {
+        var x = state.memos.find(function (memo) { return memo.id === data.id; });
+        if (x !== undefined) {
+            x.body = data.body;
+        }
     }
 };
 var getters = {

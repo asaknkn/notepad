@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <h1>New Memo</h1>
+    <Header>New Memo</Header>
     <textarea name="memo" v-model="memoBody"></textarea>
     <button @click="save">保存</button>
   </div>
@@ -8,10 +8,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Header from '@/components/Header.vue';
 //import { namespace } from "vuex-class";
 //const MemoModule = namespace("memos");
 
-@Component
+@Component({
+  components: {
+    Header,
+  },
+})
 export default class New extends Vue {
   memoBody = "";
 

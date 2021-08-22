@@ -1,7 +1,12 @@
 <template>
   <div class="home">
+    <Header>My Memos</Header>
     <ul v-for="memo in newest" :key="memo.id">
-      <li>{{memo.body}}</li>
+      <li>
+        <router-link :to="{name: 'Edit', params: {id: memo.id}}">
+          {{memo.body}}
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -11,11 +16,11 @@ import { Component, Vue } from 'vue-property-decorator';
 import {Memo} from "@/common/interface/memo";
 // import { namespace } from "vuex-class";
 // const MemoModule = namespace("memos");
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Header from '@/components/Header.vue'; // @ is an alias to /src
 
 @Component({
   components: {
-    HelloWorld,
+    Header,
   },
 })
 export default class Home extends Vue {
