@@ -31,7 +31,7 @@ export default class Edit extends Vue {
   }
 
   save(): void {
-    this.$store.commit("update", {
+    this.$store.dispatch("updateMemo", {
       id: this.$route.params["id"],
       body: this.memoBody
     });

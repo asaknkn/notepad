@@ -21,7 +21,7 @@ export default class New extends Vue {
   memoBody = "";
 
   save(): void {
-    this.$store.commit("save", {
+    this.$store.dispatch("saveMemo", {
       body: this.memoBody
     });
     this.$router.push("/");

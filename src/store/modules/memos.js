@@ -22,9 +22,20 @@ var mutations = {
 var getters = {
     allMemos: function (state) { return state.memos; },
 };
+var actions = {
+    saveMemo: function (_a, memo) {
+        var commit = _a.commit;
+        commit('save', memo);
+    },
+    updateMemo: function (_a, data) {
+        var commit = _a.commit;
+        commit('update', data);
+    }
+};
 export default {
     state: initState,
     mutations: mutations,
-    getters: getters
+    getters: getters,
+    actions: actions
 };
 //# sourceMappingURL=memos.js.map

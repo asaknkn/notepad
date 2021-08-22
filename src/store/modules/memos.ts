@@ -1,4 +1,4 @@
-import {GetterTree, MutationTree} from "vuex";
+import {GetterTree, MutationTree, ActionTree} from "vuex";
 import {Memo} from "@/common/interface/memo";
 import {RootState} from '@/store';
 
@@ -18,6 +18,7 @@ const initState = {
 
 type MemoMutation = MutationTree<State>
 type MemoGetter = GetterTree<State, RootState>
+type MemoAction = ActionTree<State, RootState>
 
 const mutations: MemoMutation = {
   save(state, memo) {
@@ -37,8 +38,18 @@ const getters: MemoGetter = {
   allMemos: (state: State) => state.memos,
 }
 
+ const actions: MemoAction = {
+  saveMemo({commit}, memo: Memo): void {
+    commit('save', memo);
+  },
+  updateMemo({commit}, data: Memo): void {
+    commit('update', data);
+  }
+ }
+
 export default {
   state: initState,
   mutations,
-  getters
+  getters,
+  actions
 }
