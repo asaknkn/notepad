@@ -8,6 +8,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+//import { namespace } from "vuex-class";
+//const MemoModule = namespace("memos");
 
 @Component
 export default class New extends Vue {
@@ -20,6 +22,7 @@ export default class New extends Vue {
     this.$router.push("/");
   }
 
+  //@MemoModule.Mutation save: any
 }
 </script>
 

@@ -1,13 +1,10 @@
-import {MutationTree} from "vuex";
-
-export interface Memos {
-  id: number,
-  body: string
-}
+import {GetterTree, MutationTree} from "vuex";
+import {Memo} from "@/common/interface/memo";
+import {RootState} from '@/store';
 
 
 export interface State {
-  memos: Memos[]
+  memos: Memo[]
 }
 
 const initState = {
@@ -20,8 +17,9 @@ const initState = {
 }
 
 type MemoMutation = MutationTree<State>
+type MemoGetter = GetterTree<State, RootState>
 
-export const mutations: MemoMutation = {
+const mutations: MemoMutation = {
   save(state, memo) {
     const max = state.memos[state.memos.length - 1].id;
     memo.id = max + 1;
@@ -29,7 +27,12 @@ export const mutations: MemoMutation = {
   }
 }
 
+const getters: MemoGetter = {
+  allMemos: (state: State) => state.memos,
+}
+
 export default {
   state: initState,
-  mutations
+  mutations,
+  getters
 }
