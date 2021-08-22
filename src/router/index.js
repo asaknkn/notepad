@@ -20,6 +20,11 @@ var routes = [
         path: '/new',
         name: 'New',
         component: function () { return import('../views/New.vue'); }
+    },
+    {
+        path: '/edit/:id',
+        name: 'Edit',
+        component: function () { return import('../views/Edit.vue'); }
     }
 ];
 var router = new VueRouter({
