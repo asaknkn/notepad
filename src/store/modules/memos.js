@@ -36,6 +36,7 @@ export default {
     state: initState,
     mutations: mutations,
     getters: getters,
-    actions: actions
+    actions: actions,
+    namespaced: true
 };
 //# sourceMappingURL=memos.js.map

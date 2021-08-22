@@ -35,7 +35,7 @@ const mutations: MemoMutation = {
 }
 
 const getters: MemoGetter = {
-  allMemos: (state: State) => state.memos,
+  allMemos: (state: State): Memo[] => state.memos,
 }
 
  const actions: MemoAction = {
@@ -51,5 +51,6 @@ export default {
   state: initState,
   mutations,
   getters,
-  actions
+  actions,
+  namespaced: true
 }

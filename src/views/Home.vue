@@ -14,8 +14,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import {Memo} from "@/common/interface/memo";
-// import { namespace } from "vuex-class";
-// const MemoModule = namespace("memos");
+import { namespace } from "vuex-class";
+const MemoModule = namespace("memos");
 import Header from '@/components/Header.vue'; // @ is an alias to /src
 
 @Component({
@@ -24,10 +24,13 @@ import Header from '@/components/Header.vue'; // @ is an alias to /src
   },
 })
 export default class Home extends Vue {
+  @MemoModule.Getter allMemos!: Memo[];
+
   get newest(): Memo[] {
-    return this.$store.getters.allMemos.slice().reverse();
+    const memos = this.allMemos;
+    return memos.slice().reverse();
+    //return this.$store.getters.allMemos.slice().reverse();
   }
-  //@MemoModule.Getter allMemos!: Memo[];
 }
 </script>
 

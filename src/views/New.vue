@@ -9,8 +9,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
-//import { namespace } from "vuex-class";
-//const MemoModule = namespace("memos");
+import { namespace } from "vuex-class";
+const MemoModule = namespace("memos");
 
 @Component({
   components: {
@@ -19,14 +19,16 @@ import Header from '@/components/Header.vue';
 })
 export default class New extends Vue {
   memoBody = "";
+  @MemoModule.Action saveMemo: any
 
   save(): void {
-    this.$store.dispatch("saveMemo", {
-      body: this.memoBody
-    });
+    // this.$store.dispatch("saveMemo", {
+    //   body: this.memoBody
+    // });
+    this.saveMemo({ body: this.memoBody });
     this.$router.push("/");
   }
 
-  //@MemoModule.Mutation save: any
+  
 }
 </script>
